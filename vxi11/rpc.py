@@ -256,7 +256,9 @@ class RawTCPClient(Client):
         self.connect()
 
     def connect(self):
+        print("rpc.RawTCPClient:self.port="+str(self.port))
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print("RawTCPClient.connect")
         self.sock.connect((self.host, self.port))
 
     def close(self):
@@ -687,6 +689,7 @@ class TCPServer(Server):
     def connect(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.prot = IPPROTO_TCP
+        print("rpc.TCPServer:self.port="+str(self.port))
         self.sock.bind((self.host, self.port))
         self.host, self.port = self.sock.getsockname()
 
@@ -728,6 +731,7 @@ class TCPServer(Server):
         try:
             pid = os.fork()
             if pid: # Parent
+                print("forksession:close")
                 connection[0].close()
                 return
             # Child
@@ -774,5 +778,3 @@ def test(host = ''):
         else: st += "%d " % prot
         st += "%d" % port
         print(st)
-
-

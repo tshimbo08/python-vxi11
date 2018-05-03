@@ -24,7 +24,8 @@ THE SOFTWARE.
 
 """
 
-from . import rpc
+#from . import rpc
+import rpc
 import random
 import re
 import struct
@@ -1208,3 +1209,8 @@ class Instrument(Device):
         if error:
             raise Vxi11Exception(error, 'local')
 
+if __name__ == '__main__':
+    inst = Instrument("127.0.0.1")
+    #inst.open()
+    print("Opened")
+    print(inst.ask("*IDN?"))
