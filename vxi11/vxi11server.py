@@ -351,10 +351,10 @@ class DeviceMoc(object):
             self.server = CoreServer(self.host,port=111)
 
         self.server.sock.settimeout(self.timeout+1)
-        #error = self.server.connect()
+        error = self.server.connect()
 
         print("Connected")
-        #self.server.register()
+        self.server.register()
         print("register")
 
         #if error:
